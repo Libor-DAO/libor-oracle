@@ -23,6 +23,7 @@ Mutated Objects:
 
 
 ### Add USDT to oracle:
+* Type Arguments: `<addr>::<module>::<type>` get from the deployed token package: [sui_ft_token](https://github.com/Libor-DAO/sui-ft-token)
 ```
 export PACKAGE=0x1723b683948472b797daf88ca13ee8eea2201ad8
 sui client call --gas-budget 10000 --package $PACKAGE --module "oracle" --function "new_oracle" --type-args 0xc99a286ab0d12312cbc2ceec6ce5dc196d4721a2::usdt::USDT --args 9
@@ -52,7 +53,7 @@ Mutated Objects:
 * USDT oracle: `0xf9b05701e84d595971d4911c770d655546408db3`
 * USDT oracle key: `0x0348c78eb509aaa8aa75b2e0903bdb286f2f9366`
 
-### Update price USDT in oracle::
+### Update price USDT in oracle:
 ```
 export PACKAGE=0x1723b683948472b797daf88ca13ee8eea2201ad8
 export ORACLE_USDT=0xf9b05701e84d595971d4911c770d655546408db3
