@@ -82,3 +82,59 @@ Mutated Objects:
   - ID: 0xdc54d85e3277f5ff62f47dd7fc4c4b763bce2f5b , Owner: Account Address ( 0x163c989a48eb685309dcd1d75363aab439c8aeb0 )
   - ID: 0xf9b05701e84d595971d4911c770d655546408db3 , Owner: Shared
 ```
+
+## New unix time
+```
+export PACKAGE=0x7c68078128c0d0369a763c88a1d7164619d09212
+sui client call --gas-budget 10000 --package $PACKAGE --module "unix_time" --function "new_time"
+```
+
+Result:
+```
+Transaction Hash: GVvodVlWpPuk/fe79UKpe+aUiTG5r0T9q04lmr4J794=
+Transaction Signature: AA==@cbMJDA2fAw1GF/1ybbqIYAQVQ9Gn2+LB8giJ3aBaS4Jh1/OUDkD2ukhTg4ON9IVtSb2q0+1mCW5jPFrZjlHBAg==@WBoJwkIBNBN0u8lbvDXrE8t7UQqNq/56vcbCUuy49hc=
+Signed Authorities Bitmap: RoaringBitmap<[0, 1, 2]>
+Transaction Kind : Call
+Package ID : 0x7c68078128c0d0369a763c88a1d7164619d09212
+Module : unix_time
+Function : new_time
+Arguments : []
+Type Arguments : []
+----- Transaction Effects ----
+Status : Success
+Created Objects:
+  - ID: 0x29f65c057068175d78c0730ee8b1671a9393f752 , Owner: Account Address ( 0x163c989a48eb685309dcd1d75363aab439c8aeb0 )
+  - ID: 0xd9d77209e345d6957868f3be26d5ac1e33d4de7c , Owner: Shared
+Mutated Objects:
+  - ID: 0xdc54d85e3277f5ff62f47dd7fc4c4b763bce2f5b , Owner: Account Address ( 0x163c989a48eb685309dcd1d75363aab439c8aeb0 )
+```
+* Unix time key: `0x29f65c057068175d78c0730ee8b1671a9393f752`
+* Unix time: `0xd9d77209e345d6957868f3be26d5ac1e33d4de7c`
+
+## Update time
+```
+export PACKAGE=0x7c68078128c0d0369a763c88a1d7164619d09212
+export UNIX_TIME_KEY=0x29f65c057068175d78c0730ee8b1671a9393f752
+export UNIX_TIME=0xd9d77209e345d6957868f3be26d5ac1e33d4de7c
+export CURRENT_TS_MS=1670412895815 # Current timestamp
+sui client call --gas-budget 10000 --package $PACKAGE --module "unix_time" --function "update" --args $UNIX_TIME $UNIX_TIME_KEY $CURRENT_TS_MS
+```
+Result:
+```
+----- Certificate ----
+Transaction Hash: I4+HiHKoVeobpUCSo23bVcrImJKtLt7y6AP/4/2nhkM=
+Transaction Signature: AA==@XTvmuE/lJzq2GV9sqVVdlUM26XodTeVyekSnXe2fc+T0CUjMhhXZ4QTcJySfUtGAY5Ma7pATCUt2ZgaUlZLiAA==@WBoJwkIBNBN0u8lbvDXrE8t7UQqNq/56vcbCUuy49hc=
+Signed Authorities Bitmap: RoaringBitmap<[0, 2, 3]>
+Transaction Kind : Call
+Package ID : 0x7c68078128c0d0369a763c88a1d7164619d09212
+Module : unix_time
+Function : update
+Arguments : ["0xd9d77209e345d6957868f3be26d5ac1e33d4de7c", "0x29f65c057068175d78c0730ee8b1671a9393f752", 1670412895815]
+Type Arguments : []
+----- Transaction Effects ----
+Status : Success
+Mutated Objects:
+  - ID: 0x29f65c057068175d78c0730ee8b1671a9393f752 , Owner: Account Address ( 0x163c989a48eb685309dcd1d75363aab439c8aeb0 )
+  - ID: 0xd9d77209e345d6957868f3be26d5ac1e33d4de7c , Owner: Shared
+  - ID: 0xdc54d85e3277f5ff62f47dd7fc4c4b763bce2f5b , Owner: Account Address ( 0x163c989a48eb685309dcd1d75363aab439c8aeb0 )
+```
